@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="asia.lhweb.IntelligentCard.mapper.CyMenuMapper">
 
-    <resultMap id="BaseResultMap" type="asia.lhweb.IntelligentCard.model.pojo.CyMenu">
+    <resultMap id="BaseResultMap" type="asia.lhweb.IntelligentCard.model.vo.CyMenuVO">
             <id property="menuId" column="menu_id" jdbcType="INTEGER"/>
             <result property="menuName" column="menu_name" jdbcType="VARCHAR"/>
             <result property="menuComponent" column="menu_component" jdbcType="VARCHAR"/>
@@ -19,9 +19,18 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        menu_id,menu_name,menu_component,
-        menu_path,menu_icon,menu_status,
-        menu_parent_id,menu_is_hidden,menu_sort,
-        menu_create_time,menu_update_time
+        m.menu_id, m.menu_name, m.menu_component,
+        m.menu_path, m.menu_icon, m.menu_status,
+        m.menu_parent_id, m.menu_is_hidden, m.menu_sort,
+        m.menu_create_time, m.menu_update_time
     </sql>
+    <select id="selectMenuTreeByAdminId" resultMap="BaseResultMap">
+            select <include refid="Base_Column_List"/>
+                from cy_menu m
+                left join cy_permission rm on m.menu_id = rm.menu_id
+                left join cy_role r on rm.role_id = r.role_id
+                left join cy_admin a on r.role_id = a.admin_role_id
+                where a.admin_id = #{adminId}
+                order by m.menu_sort
+    </select>
 </mapper>

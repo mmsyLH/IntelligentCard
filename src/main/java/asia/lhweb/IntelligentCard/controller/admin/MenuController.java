@@ -17,14 +17,15 @@ import javax.annotation.Resource;
 public class MenuController {
     @Resource
     private CyMenuService cyMenuService;
+
     /**
      * 根据管理员角色id查询菜单权限
      *
-     * @param adminRoleId 管理员角色id
+     * @param adminId 管理员id
      * @return {@link Result}
      */
-    @RequestMapping(value = "/selectByAdminRoleId")
-    public Result selectMenuByAdminRoleId(Integer adminRoleId) {
-        return cyMenuService.selectMenuByAdminRoleId(adminRoleId);
+    @RequestMapping(value = "/selectByAdminId")
+    public Result selectMenuTreeByAdminId(Integer adminId) {
+        return cyMenuService.selectMenuTreeByAdminId(adminId);
     }
 }

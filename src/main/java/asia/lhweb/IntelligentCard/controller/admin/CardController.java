@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @date : 2024/4/10
  */
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/admin/card")
 public class CardController {
     @Resource
     private CyCardService cyCardService;

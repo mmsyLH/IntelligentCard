@@ -1,5 +1,9 @@
 package asia.lhweb.IntelligentCard.mapper;
 
+import asia.lhweb.IntelligentCard.model.vo.CyMenuVO;
+
+import java.util.List;
+
 /**
 * @author Administrator
 * @description 针对表【cy_menu】的数据库操作Mapper
@@ -8,6 +12,7 @@ package asia.lhweb.IntelligentCard.mapper;
 */
 public interface CyMenuMapper {
 
+    List<CyMenuVO> selectMenuTreeByAdminId(Integer adminId);
 }
 
 

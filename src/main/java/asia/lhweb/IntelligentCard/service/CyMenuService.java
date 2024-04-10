@@ -7,5 +7,6 @@ import asia.lhweb.IntelligentCard.common.Result;
  * @date : 2024/4/10
  */
 public interface CyMenuService {
-    Result selectMenuByAdminRoleId(Integer adminRoleId);
+
+    Result selectMenuTreeByAdminId(Integer adminId);
 }

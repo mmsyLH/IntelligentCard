@@ -15,7 +15,7 @@ import java.util.List;
  * @date : 2024/4/2
  */
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/admin/admin")
 public class AdminController {
     @Resource
     private SysUserService userService;

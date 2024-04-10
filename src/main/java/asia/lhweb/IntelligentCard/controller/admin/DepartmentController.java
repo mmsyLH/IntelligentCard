@@ -18,14 +18,20 @@ import java.util.List;
  * @date 2024/04/10
  */
 @RestController("adminDepartmentController")
-@RequestMapping("/admin")
+@RequestMapping("/admin/department")
 public class DepartmentController {
     // 注入
     @Resource
     private CyDepartmentService cyDepartmentService;
 
+    /**
+     * 按部门编号选择
+     *
+     * @param departmentId 部门id
+     * @return {@link Result}<{@link List}<{@link CyDepartmentVO}>>
+     */
     @GetMapping("/selectByDepartmentId")
-    public Result<List<CyDepartmentVO>> selectByDepartmentId(Integer departmentId) {
+        public Result<List<CyDepartmentVO>> selectByDepartmentId(Integer departmentId) {
         return cyDepartmentService.selectByDepartmentId(departmentId);
     }
 }
