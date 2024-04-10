@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="asia.lhweb.IntelligentCard.mapper.CyVisitRecordMapper">
+
+    <resultMap id="BaseResultMap" type="asia.lhweb.IntelligentCard.model.pojo.CyVisitRecord">
+            <id property="visitId" column="visit_id" jdbcType="INTEGER"/>
+            <result property="visitPatientId" column="visit_patient_id" jdbcType="INTEGER"/>
+            <result property="visitAdminId" column="visit_admin_id" jdbcType="INTEGER"/>
+            <result property="visitSummary" column="visit_summary" jdbcType="VARCHAR"/>
+            <result property="visitPrescript" column="visit_prescript" jdbcType="VARCHAR"/>
+            <result property="visitCreateTime" column="visit_create_time" jdbcType="TIMESTAMP"/>
+            <result property="visitUpdateTime" column="visit_update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        visit_id,visit_patient_id,visit_admin_id,
+        visit_summary,visit_prescript,visit_create_time,
+        visit_update_time
+    </sql>
+</mapper>

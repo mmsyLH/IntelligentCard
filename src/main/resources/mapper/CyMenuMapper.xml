@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="asia.lhweb.IntelligentCard.mapper.CyMenuMapper">
+
+    <resultMap id="BaseResultMap" type="asia.lhweb.IntelligentCard.model.pojo.CyMenu">
+            <id property="menuId" column="menu_id" jdbcType="INTEGER"/>
+            <result property="menuName" column="menu_name" jdbcType="VARCHAR"/>
+            <result property="menuComponent" column="menu_component" jdbcType="VARCHAR"/>
+            <result property="menuPath" column="menu_path" jdbcType="VARCHAR"/>
+            <result property="menuIcon" column="menu_icon" jdbcType="VARCHAR"/>
+            <result property="menuStatus" column="menu_status" jdbcType="TINYINT"/>
+            <result property="menuParentId" column="menu_parent_id" jdbcType="INTEGER"/>
+            <result property="menuIsHidden" column="menu_is_hidden" jdbcType="TINYINT"/>
+            <result property="menuSort" column="menu_sort" jdbcType="INTEGER"/>
+            <result property="menuCreateTime" column="menu_create_time" jdbcType="TIMESTAMP"/>
+            <result property="menuUpdateTime" column="menu_update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        menu_id,menu_name,menu_component,
+        menu_path,menu_icon,menu_status,
+        menu_parent_id,menu_is_hidden,menu_sort,
+        menu_create_time,menu_update_time
+    </sql>
+</mapper>

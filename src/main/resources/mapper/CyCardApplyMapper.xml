@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="asia.lhweb.IntelligentCard.mapper.CyCardApplyMapper">
+
+    <resultMap id="BaseResultMap" type="asia.lhweb.IntelligentCard.model.pojo.CyCardApply">
+        <id property="applyId" column="apply_id" jdbcType="INTEGER"/>
+        <result property="applyAdminId" column="apply_admin_id" jdbcType="INTEGER"/>
+        <result property="applyApproveId" column="apply_approve_id" jdbcType="INTEGER"/>
+        <result property="applyBatchNo" column="apply_batch_no" jdbcType="VARCHAR"/>
+        <result property="applyNumber" column="apply_number" jdbcType="INTEGER"/>
+        <result property="applyCreateTime" column="apply_create_time" jdbcType="TIMESTAMP"/>
+        <result property="applyApproveTime" column="apply_approve_time" jdbcType="TIMESTAMP"/>
+        <result property="applyApproveStatus" column="apply_approve_status" jdbcType="VARCHAR"/>
+        <result property="applyApproveInfo" column="apply_approve_info" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        apply_id,apply_admin_id,apply_approve_id,
+        apply_batch_no,apply_number,apply_create_time,
+        apply_approve_time,apply_approve_status,apply_approve_info
+    </sql>
+    <select id="selectByCyAdminDTO" resultType="asia.lhweb.IntelligentCard.model.pojo.CyAdmin">
+        select * from cy_admin
+        <where>
+            <if test="adminId != null">
+                admin_id = #{adminId}
+            </if>
+            <if test="adminAccount != null">
+                admin_account = #{adminAccount}
+            </if>
+            <if test="adminPwd != null">
+                admin_pwd = #{adminPwd}
+            </if>
+            <if test="adminName != null">
+                and admin_name like concat('%',#{adminName},'%')
+            </if>
+            <if test="adminFace !=null">
+                admin_face = #{adminFace}
+            </if>
+        </where>
+    </select>
+</mapper>

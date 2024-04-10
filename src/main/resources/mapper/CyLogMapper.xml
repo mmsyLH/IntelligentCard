@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="asia.lhweb.IntelligentCard.mapper.CyLogMapper">
+
+    <resultMap id="BaseResultMap" type="asia.lhweb.IntelligentCard.model.pojo.CyLog">
+            <id property="logId" column="log_id" jdbcType="INTEGER"/>
+            <result property="logAccount" column="log_account" jdbcType="VARCHAR"/>
+            <result property="logInfo" column="log_info" jdbcType="VARCHAR"/>
+            <result property="logCreateTime" column="log_create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        log_id,log_account,log_info,
+        log_create_time
+    </sql>
+</mapper>

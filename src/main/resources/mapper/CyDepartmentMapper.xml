@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="asia.lhweb.IntelligentCard.mapper.CyDepartmentMapper">
+    <resultMap id="BaseResultMap" type="asia.lhweb.IntelligentCard.model.pojo.CyDepartment">
+        <id property="departmentId" column="department_id" jdbcType="INTEGER"/>
+        <result property="departmentName" column="department_name" jdbcType="VARCHAR"/>
+        <result property="departmentParentId" column="department_parent_id" jdbcType="INTEGER"/>
+        <result property="departmentStatus" column="department_status" jdbcType="TINYINT"/>
+        <result property="departmentIsShow" column="department_is_show" jdbcType="TINYINT"/>
+        <result property="departmentIsDelete" column="department_is_delete" jdbcType="TINYINT"/>
+        <result property="departmentCreateTime" column="department_create_time" jdbcType="TIMESTAMP"/>
+        <result property="departmentUpdateTime" column="department_update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <resultMap id="DepartmentVoMap" type="asia.lhweb.IntelligentCard.model.vo.CyDepartmentVO" autoMapping="false">
+        <id property="departmentId" column="department_id" jdbcType="INTEGER"/>
+        <result property="departmentName" column="department_name" jdbcType="VARCHAR"/>
+        <result property="departmentParentId" column="department_parent_id" jdbcType="INTEGER"/>
+        <result property="departmentStatus" column="department_status" jdbcType="TINYINT"/>
+        <result property="departmentIsShow" column="department_is_show" jdbcType="TINYINT"/>
+        <result property="departmentIsDelete" column="department_is_delete" jdbcType="TINYINT"/>
+        <result property="departmentCreateTime" column="department_create_time" jdbcType="TIMESTAMP"/>
+        <result property="departmentUpdateTime" column="department_update_time" jdbcType="TIMESTAMP"/>
+        <collection property="cyAdminVOList" column="department_id" select="asia.lhweb.IntelligentCard.mapper.CyAdminMapper.selectByDepartmentId"
+                    ofType="asia.lhweb.IntelligentCard.model.vo.CyAdminVO"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        department_id,department_name,department_parent_id,
+        department_status,department_is_show,department_is_delete,
+        department_create_time,department_update_time
+    </sql>
+    <select id="selectByDepartmentId" resultMap="DepartmentVoMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cy_department
+        where department_id = #{departmentId}
+    </select>
+</mapper>

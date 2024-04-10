@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="asia.lhweb.IntelligentCard.mapper.CyPatientMapper">
+    <sql id="Base_Column_List">
+        patient_id,patient_account,patient_pwd,
+        patient_name,patient_address,patient_is_delete,
+        patient_create_time,patient_update_time,patient_phone
+    </sql>
+
+    <resultMap id="BaseResultMap" type="asia.lhweb.IntelligentCard.model.pojo.CyPatient">
+        <id property="patientId" column="patient_id" jdbcType="INTEGER"/>
+        <result property="patientAccount" column="patient_account" jdbcType="VARCHAR"/>
+        <result property="patientPwd" column="patient_pwd" jdbcType="CHAR"/>
+        <result property="patientName" column="patient_name" jdbcType="VARCHAR"/>
+        <result property="patientAddress" column="patient_address" jdbcType="VARCHAR"/>
+        <result property="patientIsDelete" column="patient_is_delete" jdbcType="TINYINT"/>
+        <result property="patientCreateTime" column="patient_create_time" jdbcType="TIMESTAMP"/>
+        <result property="patientUpdateTime" column="patient_update_time" jdbcType="TIMESTAMP"/>
+        <result property="patientPhone" column="patient_phone" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="patientVo" type="asia.lhweb.IntelligentCard.model.pojo.CyPatient">
+        <id property="patientId" column="patient_id" jdbcType="INTEGER"/>
+        <result property="patientAccount" column="patient_account" jdbcType="VARCHAR"/>
+        <result property="patientName" column="patient_name" jdbcType="VARCHAR"/>
+        <result property="patientAddress" column="patient_address" jdbcType="VARCHAR"/>
+        <result property="patientIsDelete" column="patient_is_delete" jdbcType="TINYINT"/>
+        <result property="patientCreateTime" column="patient_create_time" jdbcType="TIMESTAMP"/>
+        <result property="patientUpdateTime" column="patient_update_time" jdbcType="TIMESTAMP"/>
+        <result property="patientPhone" column="patient_phone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--动态查询其中一个满足就行 choose、when、otherwise-->
+    <select id="selectByPatientOr" resultMap="patientVo">
+        select
+        <include refid="Base_Column_List"/>
+        from cy_patient
+         <where>
+            <choose>
+                <when test="patientId!=null">
+                    patient_id = #{patientId}
+                </when>
+                <when test="patientAccount!=null">
+                    patient_account = #{patientAccount}
+                </when>
+                <when test="patientPhone!=null">
+                    patient_phone = #{patientPhone}
+                </when>
+                <otherwise>
+                    1=1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="asia.lhweb.IntelligentCard.mapper.UserMapper">
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*)
+        from `sys_user`
+    </select>
+    <select id="getAllUser" resultType="asia.lhweb.IntelligentCard.model.pojo.SysUser">
+        select *
+        from sys_user
+    </select>
+
+    <select id="login" resultType="asia.lhweb.IntelligentCard.model.pojo.SysUser">
+        select *
+        from sys_user
+        where account = #{account}
+          and password = #{password}
+    </select>
+
+    <!--foreach删除-->
+    <delete id="deletesById">
+        delete from sys_user where user_id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

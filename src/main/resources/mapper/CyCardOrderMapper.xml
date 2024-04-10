@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="asia.lhweb.IntelligentCard.mapper.CyCardOrderMapper">
+
+    <resultMap id="BaseResultMap" type="asia.lhweb.IntelligentCard.model.pojo.CyCardOrder">
+            <id property="orderId" column="order_id" jdbcType="INTEGER"/>
+            <result property="orderCardId" column="order_card_id" jdbcType="INTEGER"/>
+            <result property="orderSaleId" column="order_sale_id" jdbcType="INTEGER"/>
+            <result property="orderPatientId" column="order_patient_id" jdbcType="INTEGER"/>
+            <result property="orderCreateTime" column="order_create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        order_id,order_card_id,order_sale_id,
+        order_patient_id,order_create_time
+    </sql>
+</mapper>
