@@ -2,6 +2,7 @@ package asia.lhweb.IntelligentCard.mapper;
 
 import asia.lhweb.IntelligentCard.model.pojo.CyAdmin;
 import asia.lhweb.IntelligentCard.model.vo.CyAdminVO;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -36,6 +37,8 @@ public interface CyAdminMapper {
     List<CyAdmin> list();
 
     int update(CyAdmin cyAdmin);
+
+    Page<CyAdmin> selectAllIf(CyAdmin cyAdmin);
 }
 
 

@@ -26,4 +26,14 @@ public interface CyAdminService {
     Result list();
 
     Result update(CyAdmin cyAdmin);
+
+    /**
+     * 页面
+     *
+     * @param cyAdmin  cy管理
+     * @param page     页面
+     * @param pageSize 页面大小
+     * @return {@link Result}
+     */
+    Result page(CyAdmin cyAdmin, Integer page, Integer pageSize);
 }

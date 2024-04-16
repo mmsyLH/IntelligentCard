@@ -3,10 +3,13 @@ package asia.lhweb.IntelligentCard.service.impl;
 
 import asia.lhweb.IntelligentCard.common.Result;
 import asia.lhweb.IntelligentCard.mapper.CyAdminMapper;
+import asia.lhweb.IntelligentCard.model.PageResult;
 import asia.lhweb.IntelligentCard.model.dto.CyAdminDTO;
 import asia.lhweb.IntelligentCard.model.pojo.CyAdmin;
 import asia.lhweb.IntelligentCard.model.vo.CyAdminVO;
 import asia.lhweb.IntelligentCard.service.CyAdminService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -70,9 +73,34 @@ public class CyAdminServiceImpl implements CyAdminService {
         int i = cyAdminMapper.update(cyAdmin);
         if (i == 1) {
             return Result.success("更新成功");
-        }else {
+        } else {
             return Result.error("更新失败");
         }
 
+    }
+
+    /**
+     * 分页
+     *
+     * @param cyAdmin  cy管理
+     * @param pageSize 页面大小
+     * @param pageNo   页面没有
+     * @return {@link Result}
+     */
+    @Override
+    public Result page(CyAdmin cyAdmin, Integer pageNo, Integer pageSize) {
+        PageHelper.startPage(pageNo, pageSize);
+        // 紧跟着的第一个select方法会被分页
+        Page<CyAdmin> adminPage = cyAdminMapper.selectAllIf(cyAdmin);
+        PageResult<CyAdmin> pageResult = new PageResult<>();
+        pageResult.setPageNo(pageNo);
+        pageResult.setPageSize(pageSize);
+        pageResult.setTotalRow((int) adminPage.getTotal());
+        pageResult.setItems(adminPage.getResult());
+        pageResult.setPageTotalCount(adminPage.getPages());
+        if (adminPage.getResult().size() == 0) {
+            return Result.error("管理员列表为空");
+        }
+        return Result.success(pageResult, "查询分页成功");
     }
 }

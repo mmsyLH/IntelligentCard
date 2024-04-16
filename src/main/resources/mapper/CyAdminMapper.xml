@@ -90,5 +90,28 @@
         WHERE
         admin_department_id = #{departmentId}
     </select>
+    <select id="selectAllIf" resultType="asia.lhweb.IntelligentCard.model.pojo.CyAdmin">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        cy_admin
+        <where>
+            <if test="adminId != null">
+                AND admin_id = #{adminId}
+            </if>
+            <if test="adminName != null and adminName != ''">
+                AND admin_name LIKE CONCAT('%',#{adminName},'%')
+            </if>
+            <if test="adminDepartmentId != null">
+                AND admin_department_id = #{adminDepartmentId}
+            </if>
+            <if test="adminStatus != null">
+                AND admin_status = #{adminStatus}
+            </if>
+            <if test="adminRoleId != null">
+                AND admin_role_id = #{adminRoleId}
+            </if>
+        </where>
+    </select>
 
 </mapper>

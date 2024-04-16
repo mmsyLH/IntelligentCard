@@ -28,22 +28,22 @@ public class AdminController {
     @Resource
     private CyAdminService cyAdminService;
 
-    @PostMapping (value = "/login")
+    @PostMapping(value = "/login")
     @ResponseBody
-    public Result<CyAdminVO> login(@RequestBody LoginAdminDTO loginAdminDTO,HttpServletRequest request) throws UnsupportedEncodingException {
-        //获取验证码
+    public Result<CyAdminVO> login(@RequestBody LoginAdminDTO loginAdminDTO, HttpServletRequest request) throws UnsupportedEncodingException {
+        // 获取验证码
         // System.out.println("登录的code:"+code);
-        System.out.println("登录的loginAdminDTO:"+loginAdminDTO);
+        System.out.println("登录的loginAdminDTO:" + loginAdminDTO);
         HttpSession session = request.getSession();
-        System.out.println("登录的sessionId:"+session.getId());
+        System.out.println("登录的sessionId:" + session.getId());
         Object captcha = request.getSession().getAttribute("captcha");
         String codeInSession = (String) request.getSession().getAttribute("captcha");
-        session.setAttribute("test","123");
+        session.setAttribute("test", "123");
         // if (codeInSession == null || !codeInSession.equalsIgnoreCase(code)) {
         //     return Result.error("验证码错误");
         // }
         // return cyAdminService.login(account,password);
-        return cyAdminService.login(loginAdminDTO.getAccount(),loginAdminDTO.getPassword());
+        return cyAdminService.login(loginAdminDTO.getAccount(), loginAdminDTO.getPassword());
     }
 
     /**
@@ -66,9 +66,15 @@ public class AdminController {
     public Result list() {
         return cyAdminService.list();
     }
-    //修改
+
+    // 修改
     @RequestMapping(value = "/update")
     public Result update(@RequestBody CyAdmin cyAdmin) {
         return cyAdminService.update(cyAdmin);
+    }
+
+    @GetMapping("page")
+    public Result page(CyAdmin cyAdmin, Integer pageNo, Integer pageSize) {
+        return cyAdminService.page(cyAdmin, pageNo, pageSize);
     }
 }

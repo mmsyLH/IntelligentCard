@@ -17,10 +17,10 @@
 
     <!-- 事务管理器配置 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
     </bean>
     <!-- 启用注解驱动的事务管理 -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- 配置sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -30,6 +30,20 @@
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <!-- mapper对应的映射文件位置 -->
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <!-- 配置拦截器-->
+        <!-- 注意其他配置 -->
+        <!--<property name="plugins">-->
+        <!--    <array>-->
+        <!--        <bean class="com.github.pagehelper.PageInterceptor">-->
+        <!--            <property name="properties">-->
+        <!--                <props>-->
+        <!--                    <prop key="helperDialect">mysql</prop>-->
+        <!--                    <prop key="reasonable">true</prop>-->
+        <!--                </props>-->
+        <!--            </property>-->
+        <!--        </bean>-->
+        <!--    </array>-->
+        <!--</property>-->
     </bean>
 
     <!-- mapper接口配置：让spring接管mapper的实现类 -->

@@ -10,17 +10,6 @@
     <!--开启Mvc注解驱动-->
     <mvc:annotation-driven/>
 
-    <!--配置gson-->
-    <!--<mvc:annotation-driven>-->
-    <!--    <mvc:message-converters register-defaults="true">-->
-    <!--        <bean class="org.springframework.http.converter.json.GsonHttpMessageConverter">-->
-    <!--            <property name="gson" ref="gson"/>-->
-    <!--        </bean>-->
-    <!--    </mvc:message-converters>-->
-    <!--</mvc:annotation-driven>-->
-    <!--<bean id="gson" class="com.google.gson.Gson">-->
-    <!--</bean>-->
-
     <!--配置fastjson 设置返回类型为json-->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
