@@ -23,6 +23,36 @@
         admin_status,admin_is_delete,admin_create_time,
         admin_update_time,admin_department_id
     </sql>
+    <update id="update">
+        update cy_admin
+        <set>
+            <if test="adminAccount != null">
+                admin_account = #{adminAccount},
+            </if>
+            <if test="adminPwd != null">
+                admin_pwd = #{adminPwd},
+            </if>
+            <if test="adminName != null">
+                admin_name = #{adminName},
+            </if>
+            <if test="adminFace != null">
+                admin_face = #{adminFace},
+            </if>
+            <if test="adminRoleId != null">
+                admin_role_id = #{adminRoleId},
+            </if>
+            <if test="adminStatus != null">
+                admin_status = #{adminStatus},
+            </if>
+            <if test="adminIsDelete != null">
+                admin_is_delete = #{adminIsDelete},
+            </if>
+            <if test="adminDepartmentId != null">
+                admin_department_id = #{adminDepartmentId},
+            </if>
+        </set>
+        where admin_id = #{adminId}
+    </update>
     <resultMap id="adminVoMap" type="asia.lhweb.IntelligentCard.model.vo.CyAdminVO" autoMapping="false">
         <id property="adminId" column="admin_id" jdbcType="INTEGER"/>
         <result property="adminAccount" column="admin_account" jdbcType="VARCHAR"/>

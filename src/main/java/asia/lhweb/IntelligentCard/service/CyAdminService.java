@@ -3,6 +3,7 @@ package asia.lhweb.IntelligentCard.service;
 
 import asia.lhweb.IntelligentCard.common.Result;
 import asia.lhweb.IntelligentCard.model.dto.CyAdminDTO;
+import asia.lhweb.IntelligentCard.model.pojo.CyAdmin;
 import asia.lhweb.IntelligentCard.model.vo.CyAdminVO;
 
 /**
@@ -22,4 +23,7 @@ public interface CyAdminService {
      */
     Result<CyAdminVO> login(String account, String password);
 
+    Result list();
+
+    Result update(CyAdmin cyAdmin);
 }

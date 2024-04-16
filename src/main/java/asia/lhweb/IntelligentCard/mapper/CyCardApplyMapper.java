@@ -2,6 +2,7 @@ package asia.lhweb.IntelligentCard.mapper;
 
 import asia.lhweb.IntelligentCard.model.dto.CyAdminDTO;
 import asia.lhweb.IntelligentCard.model.pojo.CyCard;
+import asia.lhweb.IntelligentCard.model.pojo.CyCardApply;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ import java.util.List;
 */
 public interface CyCardApplyMapper {
     List<CyCard> selectByCyAdminDTO(CyAdminDTO cyAdminDTO);
+
+    int add(CyCardApply cyCardApply);
 }
 
 

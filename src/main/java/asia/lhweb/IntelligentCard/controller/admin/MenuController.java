@@ -28,4 +28,5 @@ public class MenuController {
     public Result selectMenuTreeByAdminId(Integer adminId) {
         return cyMenuService.selectMenuTreeByAdminId(adminId);
     }
+
 }

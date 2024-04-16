@@ -21,8 +21,38 @@
         apply_batch_no,apply_number,apply_create_time,
         apply_approve_time,apply_approve_status,apply_approve_info
     </sql>
+    <!--动态添加-->
+    <insert id="add">
+        insert into cy_card_apply(
+        <trim suffixOverrides=",">
+            <if test="applyAdminId != null">
+                apply_admin_id,
+            </if>
+            <if test="applyApproveId != null">
+                apply_approve_id,
+            </if>
+            <if test="applyBatchNo != null">
+                apply_batch_no,
+            </if>
+            <if test="applyNumber != null">
+                apply_number,
+            </if>
+            <if test="applyApproveTime != null">
+                apply_approve_time,
+            </if>
+            <if test="applyApproveStatus != null">
+                apply_approve_status,
+            </if>
+            <if test="applyApproveInfo != null">
+                apply_approve_info,
+            </if>
+        </trim>
+    </insert>
+
     <select id="selectByCyAdminDTO" resultType="asia.lhweb.IntelligentCard.model.pojo.CyAdmin">
-        select * from cy_admin
+        select
+        <include refid="Base_Column_List"/>
+        from cy_admin
         <where>
             <if test="adminId != null">
                 admin_id = #{adminId}

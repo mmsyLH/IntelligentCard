@@ -1,7 +1,11 @@
 package asia.lhweb.IntelligentCard.mapper;
 
+import asia.lhweb.IntelligentCard.model.pojo.CyAdmin;
 import asia.lhweb.IntelligentCard.model.vo.CyAdminVO;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
 * @author Administrator
@@ -27,6 +31,11 @@ public interface CyAdminMapper {
      * @return {@link CyAdminVO}
      */
     CyAdminVO selectByDepartmentId(Integer departmentId);
+
+    @Select("select * from cy_admin")
+    List<CyAdmin> list();
+
+    int update(CyAdmin cyAdmin);
 }
 
 

@@ -31,6 +31,27 @@
         department_status,department_is_show,department_is_delete,
         department_create_time,department_update_time
     </sql>
+    <update id="update">
+        update cy_department
+        <set>
+            <if test="departmentName != null">
+                department_name = #{departmentName},
+            </if>
+            <if test="departmentParentId != null">
+                department_parent_id = #{departmentParentId},
+            </if>
+            <if test="departmentStatus != null">
+                department_status = #{departmentStatus},
+            </if>
+            <if test="departmentIsShow != null">
+                department_is_show = #{departmentIsShow},
+            </if>
+            <if test="departmentIsDelete != null">
+                department_is_delete = #{departmentIsDelete},
+            </if>
+        </set>
+            where department_id = #{departmentId}
+    </update>
     <select id="selectByDepartmentId" resultMap="DepartmentVoMap">
         select
         <include refid="Base_Column_List"/>

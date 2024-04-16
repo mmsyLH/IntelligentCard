@@ -1,9 +1,8 @@
 package asia.lhweb.IntelligentCard.service;
 
 import asia.lhweb.IntelligentCard.common.Result;
+import asia.lhweb.IntelligentCard.model.pojo.CyDepartment;
 import asia.lhweb.IntelligentCard.model.vo.CyDepartmentVO;
-
-import java.util.List;
 
 /**
  * Cy部门服务
@@ -19,5 +18,9 @@ public interface CyDepartmentService {
      * @param departmentId 部门id
      * @return {@link Result}<{@link CyDepartmentVO}>
      */
-    Result<List<CyDepartmentVO>> selectByDepartmentId(Integer departmentId);
+    Result<CyDepartmentVO> selectByDepartmentId(Integer departmentId);
+
+    Result list();
+
+    Result update(CyDepartment cyDepartment);
 }

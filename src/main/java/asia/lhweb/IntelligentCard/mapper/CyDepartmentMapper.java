@@ -1,6 +1,8 @@
 package asia.lhweb.IntelligentCard.mapper;
 
+import asia.lhweb.IntelligentCard.model.pojo.CyDepartment;
 import asia.lhweb.IntelligentCard.model.vo.CyDepartmentVO;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -18,7 +20,11 @@ public interface CyDepartmentMapper {
      * @param departmentId 部门id
      * @return {@link List}<{@link CyDepartmentVO}>
      */
-    List<CyDepartmentVO> selectByDepartmentId(Integer departmentId);
+    CyDepartmentVO selectByDepartmentId(Integer departmentId);
+    @Select("select * from cy_department")
+    List<CyDepartment> list();
+
+    int update(CyDepartment cyDepartment);
 }
 
 
