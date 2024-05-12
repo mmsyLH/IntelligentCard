@@ -1,5 +1,6 @@
 package asia.lhweb.IntelligentCard.mapper;
 
+import asia.lhweb.IntelligentCard.annotation.Entity;
 import asia.lhweb.IntelligentCard.model.pojo.CyAdmin;
 import asia.lhweb.IntelligentCard.model.vo.CyAdminVO;
 import com.github.pagehelper.Page;
@@ -14,6 +15,7 @@ import java.util.List;
 * @createDate 2024-04-10 10:02:11
 * @Entity asia.lhweb.IntelligentCard.model.pojo.CyAdmin
 */
+@Entity(CyAdmin.class)
 public interface CyAdminMapper {
 
 
@@ -39,6 +41,9 @@ public interface CyAdminMapper {
     int update(CyAdmin cyAdmin);
 
     Page<CyAdmin> selectAllIf(CyAdmin cyAdmin);
+
+    int deletesById(List<Integer> ids);
+    int deleteOneById(int id);
 }
 
 

@@ -6,4 +6,6 @@ package proxy;
  */
 public interface Animal {
     void eat();
+
+    String drink();
 }

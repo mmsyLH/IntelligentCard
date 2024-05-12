@@ -2,18 +2,26 @@ package asia.lhweb.IntelligentCard.service.impl;
 
 
 import asia.lhweb.IntelligentCard.common.Result;
+import asia.lhweb.IntelligentCard.constant.LhIntelligentCardConstant;
 import asia.lhweb.IntelligentCard.mapper.CyAdminMapper;
 import asia.lhweb.IntelligentCard.model.PageResult;
 import asia.lhweb.IntelligentCard.model.dto.CyAdminDTO;
 import asia.lhweb.IntelligentCard.model.pojo.CyAdmin;
 import asia.lhweb.IntelligentCard.model.vo.CyAdminVO;
 import asia.lhweb.IntelligentCard.service.CyAdminService;
+import asia.lhweb.IntelligentCard.utils.JwtUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Administrator
@@ -25,6 +33,9 @@ public class CyAdminServiceImpl implements CyAdminService {
     @Resource
     private CyAdminMapper cyAdminMapper;
 
+    @Resource
+    private RedisTemplate<String, String> redisTemplate;
+
     public Result selectByCyAdminDTO(CyAdminDTO cyAdminDTO) {
 
         return null;
@@ -35,16 +46,33 @@ public class CyAdminServiceImpl implements CyAdminService {
      *
      * @param account  账户
      * @param password 密码
+     * @param request
      * @return {@link Result}<{@link CyAdminVO}>
      */
     @Override
-    public Result<CyAdminVO> login(String account, String password) {
+    public Result login(String account, String password, HttpServletRequest request) {
         // 根据用户名判断 用户是否存在 不存存在就返回提示信息
-        CyAdminVO cyAdminVO = cyAdminMapper.login(account, password);
+        // 2 加密 import org.springframework.util.DigestUtils;
+        String encryptPassword = DigestUtils.md5DigestAsHex((LhIntelligentCardConstant.SALT + password).getBytes());
+        CyAdminVO cyAdminVO = cyAdminMapper.login(account, encryptPassword);
         if (cyAdminVO == null) {
             return Result.error("登录失败，账户或者密码错误");
         }
-        return Result.success(cyAdminVO, "登录成功");
+        //cyAdminVO存Map;
+        HashMap<String, Object> objectObjectHashMap = new HashMap<>();
+        objectObjectHashMap.put("adminId", cyAdminVO.getAdminId());
+        objectObjectHashMap.put("adminAccount", cyAdminVO.getAdminAccount());
+
+        String token = JwtUtil.createJWT(1000*60*60*24, objectObjectHashMap);
+        System.out.println("生成的token："+token);
+
+        redisTemplate.opsForValue().set(cyAdminVO.getAdminAccount(), token,1, TimeUnit.DAYS);
+
+        // 构建新的对象，合并cyAdminVO和token
+        JSONObject resultData = new JSONObject();
+        resultData.put("data", cyAdminVO);
+        resultData.put("token", token);
+        return Result.success(resultData, "登录成功");
     }
 
     /**
@@ -92,6 +120,7 @@ public class CyAdminServiceImpl implements CyAdminService {
         PageHelper.startPage(pageNo, pageSize);
         // 紧跟着的第一个select方法会被分页
         Page<CyAdmin> adminPage = cyAdminMapper.selectAllIf(cyAdmin);
+
         PageResult<CyAdmin> pageResult = new PageResult<>();
         pageResult.setPageNo(pageNo);
         pageResult.setPageSize(pageSize);
@@ -102,5 +131,14 @@ public class CyAdminServiceImpl implements CyAdminService {
             return Result.error("管理员列表为空");
         }
         return Result.success(pageResult, "查询分页成功");
+    }
+
+    @Override
+    public Result deletesById(List<Integer> ids) {
+        int res=cyAdminMapper.deletesById(ids);
+        if (res>=1){
+            return Result.success(res,"删除成功");
+        }
+        return Result.error("删除失败");
     }
 }

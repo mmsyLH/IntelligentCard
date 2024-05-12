@@ -1,9 +1,9 @@
 package asia.lhweb.IntelligentCard.model.pojo;
 
+import asia.lhweb.IntelligentCard.annotation.DeleteMarker;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 管理员信息表
@@ -49,6 +49,7 @@ public class CyAdmin implements Serializable {
     /**
      * 管理员是否被删除1是0否
      */
+    @DeleteMarker(columnName = "admin_is_delete")
     private Integer adminIsDelete;
 
     /**
@@ -59,7 +60,7 @@ public class CyAdmin implements Serializable {
     /**
      * 管理员更新时间
      */
-    private Date adminUpdateTime;
+    private String adminUpdateTime;
 
     /**
      * 管理员所属部门

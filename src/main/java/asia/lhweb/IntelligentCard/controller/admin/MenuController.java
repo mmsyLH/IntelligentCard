@@ -2,6 +2,7 @@ package asia.lhweb.IntelligentCard.controller.admin;
 
 import asia.lhweb.IntelligentCard.common.Result;
 import asia.lhweb.IntelligentCard.service.CyMenuService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,9 +25,8 @@ public class MenuController {
      * @param adminId 管理员id
      * @return {@link Result}
      */
-    @RequestMapping(value = "/selectByAdminId")
+    @GetMapping(value = "/selectByAdminId")
     public Result selectMenuTreeByAdminId(Integer adminId) {
         return cyMenuService.selectMenuTreeByAdminId(adminId);
     }
-
 }

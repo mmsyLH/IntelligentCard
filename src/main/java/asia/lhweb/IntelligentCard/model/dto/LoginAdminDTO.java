@@ -1,4 +1,4 @@
-package asia.lhweb.IntelligentCard.model;
+package asia.lhweb.IntelligentCard.model.dto;
 
 import lombok.Data;
 
@@ -16,6 +16,5 @@ public class LoginAdminDTO implements Serializable {
     private String code;
 
     private String password;
-
 
 }

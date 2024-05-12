@@ -23,7 +23,7 @@ public class AnimalProxy {
      * @return 返回代理后的动物对象，该对象在方法调用时会附加额外的操作。
      */
     public Animal getProxy() {
-        // 获取动物对象实现的接口列表
+        // 获取动物对象实现的接口列表 代理的底层是通过接口来完成调用
         Class<?>[] interfaces = animal.getClass().getInterfaces();
 
         // 创建一个动态代理的调用处理器

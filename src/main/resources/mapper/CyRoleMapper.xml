@@ -17,4 +17,9 @@
         from cy_role
         where role_id = #{adminRoleId}
     </select>
+    <select id="getAllRole" resultType="asia.lhweb.IntelligentCard.model.pojo.CyRole">
+        select
+        <include refid="Base_Column_List"/>
+        from cy_role
+    </select>
 </mapper>

@@ -1,11 +1,11 @@
 package asia.lhweb.IntelligentCard.controller.common;
 
-import asia.lhweb.IntelligentCard.common.Result;
-import asia.lhweb.IntelligentCard.utils.AliOssUtil;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -14,14 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.UUID;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/common")
 public class CommonController {
-    @Autowired
-    private AliOssUtil aliOssUtil;
+    // @Autowired
+    // private AliOssUtil aliOssUtil;
 
     @Autowired
     private DefaultKaptcha defaultKaptcha;
@@ -47,7 +46,6 @@ public class CommonController {
         HttpSession session = request.getSession();
         session.setAttribute("captcha", text);
 
-
         System.out.println("生成验证码的sessionId:" + session.getId());
         Object captcha = session.getAttribute("captcha");
         System.out.println("captcha:" + captcha);
@@ -72,28 +70,28 @@ public class CommonController {
         }
     }
 
-    /**
-     * 文件上传操作
-     *
-     * @param file 文件
-     * @return {@link Result}<{@link String}>
-     */
-    @PostMapping("/upload")
-    public Result<String> update(MultipartFile file) {
-        try {
-            // 获取原来的文件名
-            String originalFilename = file.getOriginalFilename();
-            // 截取扩展名后缀
-            String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
-            String objectName = UUID.randomUUID() + extension;
-
-            // 文件请求路径
-            String filePath = aliOssUtil.upload(file.getBytes(), objectName);
-            return Result.success(filePath);
-        } catch (IOException e) {
-
-        }
-        return Result.error("上传失败");
-    }
+    // /**
+    //  * 文件上传操作
+    //  *
+    //  * @param file 文件
+    //  * @return {@link Result}<{@link String}>
+    //  */
+    // @PostMapping("/upload")
+    // public Result<String> update(MultipartFile file) {
+    //     try {
+    //         // 获取原来的文件名
+    //         String originalFilename = file.getOriginalFilename();
+    //         // 截取扩展名后缀
+    //         String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+    //         String objectName = UUID.randomUUID() + extension;
+    //
+    //         // 文件请求路径
+    //         String filePath = aliOssUtil.upload(file.getBytes(), objectName);
+    //         return Result.success(filePath);
+    //     } catch (IOException e) {
+    //
+    //     }
+    //     return Result.error("上传失败");
+    // }
 
 }

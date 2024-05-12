@@ -18,14 +18,17 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <!-- 依赖管理 -->
     <dependencies>
 
+        <!-- JUnit测试框架 -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
         </dependency>
 
+        <!-- javax servlet API，作为提供者依赖，不需要打包到最终的应用中 -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -33,132 +36,155 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Gson：Java到JSON对象的绑定 -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.8.5</version>
         </dependency>
 
+        <!-- DOM4J：用于处理XML的库 -->
         <dependency>
             <groupId>org.dom4j</groupId>
             <artifactId>dom4j</artifactId>
             <version>2.1.1</version>
         </dependency>
 
+        <!-- Druid：数据库连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.1.10</version>
         </dependency>
 
+        <!-- MySQL连接器 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.28</version>
         </dependency>
 
-        <!-- spring 上下文容器 -->
+        <!-- Spring上下文容器 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>5.3.30</version>
         </dependency>
 
-        <!-- spring 核心 -->
+        <!-- Spring核心 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>5.3.30</version>
         </dependency>
 
-        <!--    springmvc的依赖-->
+        <!-- Spring MVC -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>5.3.30</version>
         </dependency>
 
-        <!--引入mybatis-->
+        <!-- MyBatis ORM框架 -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.2.8</version>
         </dependency>
 
-        <!--spring-jdbc依赖-->
+        <!-- Spring JDBC依赖 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>5.3.30</version>
         </dependency>
 
-
-        <!--mybatis整合spirng-->
+        <!-- MyBatis与Spring整合 -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>1.2.2</version>
         </dependency>
 
-        <!-- 数据库事务   -->
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+        <!-- 数据库事务管理 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <version>5.3.30</version>
         </dependency>
 
-        <!--    引入gson-->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.5</version>
-        </dependency>
-
-        <!--    引入fastjson-->
+        <!-- FastJSON：JSON处理库 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>2.0.40</version>
         </dependency>
 
-        <!-- 小辣椒 -->
+        <!-- Lombok：代码简化工具 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
         </dependency>
 
-        <!--    分页插件-->
+        <!-- 分页插件 -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
             <version>5.2.0</version>
         </dependency>
 
-        <!--文件上传-->
+        <!-- 阿里云对象存储服务 -->
         <dependency>
             <groupId>com.aliyun.oss</groupId>
             <artifactId>aliyun-sdk-oss</artifactId>
             <version>3.10.2</version>
         </dependency>
 
-        <!--kaptcha验证码生成器-->
+        <!-- Kaptcha：验证码生成库 -->
         <dependency>
             <groupId>com.github.axet</groupId>
             <artifactId>kaptcha</artifactId>
             <version>0.0.9</version>
         </dependency>
 
-        <!--懒加载-->
-        <!-- https://mvnrepository.com/artifact/cglib/cglib -->
+        <!-- CGLIB：用于创建Java子类的库 -->
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>3.3.0</version>
         </dependency>
 
+        <!-- Jedis：Redis客户端 -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.7.0</version>
+        </dependency>
+
+        <!-- Spring Data Redis -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+
+        <!-- Spring Session与Redis整合 -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+
+        <!-- JWT：JSON Web Token实现 -->
+        <dependency>
+            <groupId>io.github.qyg2297248353.components</groupId>
+            <artifactId>jsonwebtoken-jjwt</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
     </dependencies>
+
 
     <build>
         <finalName>IntelligentCard</finalName>

@@ -45,7 +45,12 @@ public class Result<T> implements Serializable {
         result.code = 0;
         return result;
     }
-
+    public static <T> Result<T> error(int code,String msg) {
+        Result<T> result = new Result<>();
+        result.msg = msg;
+        result.code = code;
+        return result;
+    }
     public static <T> Result<T> error(Map<String, String> map) {
         Result<T> result = new Result<>();
         result.msgMap = map;

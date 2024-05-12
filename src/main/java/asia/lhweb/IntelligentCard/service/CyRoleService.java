@@ -2,6 +2,8 @@ package asia.lhweb.IntelligentCard.service;
 
 
 import asia.lhweb.IntelligentCard.common.Result;
+import asia.lhweb.IntelligentCard.model.PageResult;
+import asia.lhweb.IntelligentCard.model.pojo.CyRole;
 
 /**
 * @author Administrator
@@ -10,4 +12,6 @@ import asia.lhweb.IntelligentCard.common.Result;
 */
 public interface CyRoleService {
     Result selectByAdminRoleId(Integer adminRoleId);
+
+    Result<PageResult<CyRole>> getAllRole(int pageNo, int pageSize);
 }

@@ -2,7 +2,9 @@ package asia.lhweb.IntelligentCard.mapper;
 
 import asia.lhweb.IntelligentCard.model.dto.CyCardDTO;
 import asia.lhweb.IntelligentCard.model.pojo.CyCard;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +22,11 @@ public interface CyCardMapper {
      */
     List<CyCard> selectByCyCardDTO(CyCardDTO cyCardDTO);
 
+    int addCards(@Param("cardPrefix") String cardPrefix, @Param("cardNumberList") ArrayList<String> cardNumberList);
+
+    int addCard(@Param("prefix") String prefix, @Param("cardNum") String cardNum);
+
+    boolean isCardExists(String cardNum);
 }
 
 

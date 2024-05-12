@@ -4,7 +4,6 @@ import asia.lhweb.IntelligentCard.model.pojo.CyRole;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 管理员信息表
@@ -60,7 +59,7 @@ public class CyAdminVO implements Serializable {
     /**
      * 管理员更新时间
      */
-    private Date adminUpdateTime;
+    private String adminUpdateTime;
 
     /**
      * 管理员所属部门

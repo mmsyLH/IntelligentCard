@@ -19,8 +19,13 @@ public interface LhIntelligentCardConstant {
      * 应用名称
      */
     String WEBAPP_NAME = "webapp";
+    String TOKEN_NAME = "ECard-Token";
     /**
      * 最大请求大小
      */
     int MAX_REQUEST_SIZE = 1024 * 1024*50; // 设置最大请求大小为50MB
+    /**
+     * JWT过期时间
+     */
+    long JWT_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;
 }

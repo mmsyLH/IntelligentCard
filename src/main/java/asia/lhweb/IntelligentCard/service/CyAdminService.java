@@ -4,7 +4,9 @@ package asia.lhweb.IntelligentCard.service;
 import asia.lhweb.IntelligentCard.common.Result;
 import asia.lhweb.IntelligentCard.model.dto.CyAdminDTO;
 import asia.lhweb.IntelligentCard.model.pojo.CyAdmin;
-import asia.lhweb.IntelligentCard.model.vo.CyAdminVO;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
 * @author Administrator
@@ -19,9 +21,10 @@ public interface CyAdminService {
      *
      * @param account  账户
      * @param password 密码
-     * @return {@link Result}<{@link CyAdminVO}>
+     * @param request
+     * @return {@link Result}<{@l.0ink CyAdminVO}>
      */
-    Result<CyAdminVO> login(String account, String password);
+    Result login(String account, String password, HttpServletRequest request);
 
     Result list();
 
@@ -36,4 +39,6 @@ public interface CyAdminService {
      * @return {@link Result}
      */
     Result page(CyAdmin cyAdmin, Integer page, Integer pageSize);
+
+    Result deletesById(List<Integer> ids);
 }

@@ -9,4 +9,9 @@ public class Cat implements Animal{
     public void eat() {
         System.out.println("猫吃猫粮");
     }
+
+    @Override
+    public String drink() {
+        return null;
+    }
 }

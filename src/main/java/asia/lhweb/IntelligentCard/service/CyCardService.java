@@ -10,5 +10,18 @@ import asia.lhweb.IntelligentCard.model.dto.CyCardDTO;
 * @createDate 2024-04-03 12:56:32
 */
 public interface CyCardService {
+    /**
+     * 按卡号选择
+     *
+     * @param cyCardDTO 赛门铁克
+     * @return {@link Result}
+     */
     Result selectByCyCardDTO(CyCardDTO cyCardDTO);
+
+    /**
+     * 添加卡
+     *
+     * @return {@link Result}
+     */
+    Result addCards(String prefix, int startNo, int count);
 }

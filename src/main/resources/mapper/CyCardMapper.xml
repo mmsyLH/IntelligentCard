@@ -21,6 +21,15 @@
         card_money,card_is_delete,card_status,
         card_create_time,card_update_time,card_patient_id
     </sql>
+    <insert id="addCards">
+            insert into (card_prefix,card_number) values
+            <foreach collection="cardNumberList" item="cardNumber" separator=",">
+                (#{cardPrefix},#{cardNumber})
+            </foreach>
+    </insert>
+    <insert id="addCard">
+        insert into cy_card(card_prefix,card_number) values(#{prefix},#{cardNum})
+    </insert>
     <!--根据CyCardDTO对象进行组合查询 id用= 其余字段用like进行拼接-->
     <select id="selectByCyCardDTO" resultMap="BaseResultMap">
         select * from cy_card
@@ -44,6 +53,9 @@
                 card_create_time = #{cardCreateTime}
             </if>
         </where>
+    </select>
+    <select id="isCardExists" resultType="java.lang.Boolean">
+        select count(*) from cy_card where card_number = #{cardNum}
     </select>
 
 
